@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Asignación de equipos',
-    'version': '18.0.1.3',
+    'version': '18.0.1.5',
     'sequence': 1,
     'author': 'DGV',
     'website': 'https://github.com/alfaSystemas5457/',
