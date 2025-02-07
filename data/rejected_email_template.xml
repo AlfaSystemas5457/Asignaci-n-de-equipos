@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+    <record id="template_allocation_request_rejected" model="mail.template">
+        <field name="name">Equipment Request is rejected</field>
+        <field name="subject">({{object.number}})Equipment Request is Rejected</field>
+        <field name="email_from">{{user.partner_id and user.partner_id.email or ''}}</field>
+        <field name="email_to">{{object.employee_id and object.employee_id.work_email or ''}}</field>
+        <field name="model_id" ref="dev_equipment_allocation.model_equipment_allocation"/>
+        <field name="body_html"><![CDATA[
+            <div style="background-color:#F3F5F6;color:#515166;font-family:Arial,Helvetica,sans-serif;font-size:14px;">
+                <p>Hello,</p>
+                <br/>
+                <p>An Equipment Request <strong><t t-out="object.number"></strong> is rejected by manager</p>
+                <br/>
+                <p>
+                    Reject Reason : <t t-out="object.reject_reason">
+                </p>
+                <br/>
+                <a t-attf-href="{{object.allocation_url()}}"
+                    style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;"
+                    target="_blank">
+                    View Request
+                </a>
+                <br/><br/>
+            </div>
+        ]]></field>
+    </record>
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+    <record id="rule_user_see_own_equipment_allocation_request" model="ir.rule">
+        <field name="name">Equipment Request User: See Own</field>
+        <field name="model_id" ref="dev_equipment_allocation.model_equipment_allocation"/>
+        <field name="domain_force">[('employee_id.user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="rule_manager_see_all_equipment_allocation_request" model="ir.rule">
+        <field name="name">Equipment Request Manager: See All</field>
+        <field name="model_id" ref="dev_equipment_allocation.model_equipment_allocation"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('maintenance.group_equipment_manager'))]"/>
+    </record>
+</odoo>

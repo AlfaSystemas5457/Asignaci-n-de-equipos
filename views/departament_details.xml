@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="add_departament_defaul" model="ir.ui.view">
+        <field name="name">add departement default</field>
+        <field name="model">equipment.allocation</field>
+        <field name="inherit_id" ref="dev_equipment_allocation.form_equipment_allocation_dev_equipment_allocation" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='request_date']" position="after">
+                <field name="area" />
+                <field name="doc_type" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

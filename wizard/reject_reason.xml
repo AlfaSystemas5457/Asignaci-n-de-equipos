@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+    <record id="popup_reject_reason_dev_equipment_allocation" model="ir.ui.view">
+        <field name="name">popup_reject_reason_dev_equipment_allocation_name</field>
+        <field name="model">reject.reason</field>
+        <field name="arch" type="xml">
+            <form string="Reject Reason">
+                <separator string="Reject Reason"/>
+                <field name="reject_reason"/>
+                <field name="equipment_id" invisible="1"/>
+                <footer>
+                    <button string="Reject" name="reject_request" type="object" class="oe_highlight"/>&#160;&#160;or&#160;&#160;
+                    <button string="Close Window" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+	<record id="action_popup_reject_reason_dev_equipment_allocation" model="ir.actions.act_window">
+        <field name="name">Reject Reason</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">reject.reason</field>
+        <field name="context">{'default_equipment_id': active_id}</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="popup_reject_reason_dev_equipment_allocation"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

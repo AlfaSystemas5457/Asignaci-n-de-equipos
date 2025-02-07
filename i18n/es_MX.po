@@ -1,0 +1,703 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* dev_equipment_allocation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-22 16:10+0000\n"
+"PO-Revision-Date: 2025-01-22 16:10+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dev_equipment_allocation
+#: model:ir.actions.report,print_report_name:dev_equipment_allocation.report_template_id
+msgid "'Report ' + 'equipment ' + (object.name or 'Without name')"
+msgstr "'Reporte de ' + 'equipo ' + (object.name or 'Sin nombre')"
+
+#. module: dev_equipment_allocation
+#: model:mail.template,subject:dev_equipment_allocation.template_allocation_request_allocated
+msgid "({{object.number}})Equipment Request is Allocated"
+msgstr "({{object.number}})Asigna la solicitud de equipo"
+
+#. module: dev_equipment_allocation
+#: model:mail.template,subject:dev_equipment_allocation.template_allocation_request_rejected
+msgid "({{object.number}})Equipment Request is Rejected"
+msgstr "({{object.number}})Solicitud de equipo es rechazada"
+
+#. module: dev_equipment_allocation
+#: model:mail.template,subject:dev_equipment_allocation.template_allocation_request_submitted
+msgid "({{object.number}})Equipment Request waiting for approval"
+msgstr "({{object.number}})Solicitud de equipo en espera de aprobación"
+
+#. module: dev_equipment_allocation
+#: model:mail.template,subject:dev_equipment_allocation.template_allocation_return_reminder
+msgid "({{object.number}})Equipment Request's return date is near"
+msgstr "({{object.number}})La fecha de devolución de la solicitud de equipo está cerca"
+
+#. module: dev_equipment_allocation
+#: model:mail.template,body_html:dev_equipment_allocation.template_allocation_request_allocated
+msgid ""
+"<div style=\"background-color:#F3F5F6;color:#515166;font-family:Arial,Helvetica,sans-serif;font-size:14px;\">\n"
+"                <p>Hello,</p>\n"
+"                <br/>\n"
+"                <p>An Equipment Request <strong><t t-out=\"object.number\"/></strong> is now approved by\n"
+"                manager and <strong><t t-out=\"object.equipment_id.name\"/></strong> is now allocated to you</p>\n"
+"                <br/>\n"
+"                <a t-attf-href=\"{{object.allocation_url()}}\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\" target=\"_blank\">\n"
+"                    View Request\n"
+"                </a>\n"
+"                <br/><br/>\n"
+"            </div>\n"
+"        "
+msgstr ""
+"<div style=\"background-color:#F3F5F6;color:#515166;font-family:Arial,Helvetica,sans-serif;font-size:14px;\">\n"
+"                <p>Hola,</p>\n"
+"                <br/>\n"
+"                <p>Una solicitud de equipo <strong><t t-out=\"object.number\"/></strong> ha sido aprobada por\n"
+"                el gerente y <strong><t t-out=\"object.equipment_id.name\"/></strong> ahora está asignado a usted</p>\n"
+"                <br/>\n"
+"                <a t-attf-href=\"{{object.allocation_url()}}\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\" target=\"_blank\">\n"
+"                    Ver solicitud\n"
+"                </a>\n"
+"                <br/><br/>\n"
+"            </div>\n"
+"        "
+
+#. module: dev_equipment_allocation
+#: model:mail.template,body_html:dev_equipment_allocation.template_allocation_request_rejected
+msgid ""
+"<div style=\"background-color:#F3F5F6;color:#515166;font-family:Arial,Helvetica,sans-serif;font-size:14px;\">\n"
+"                <p>Hello,</p>\n"
+"                <br/>\n"
+"                <p>An Equipment Request <strong><t t-out=\"object.number\"/></strong> is rejected by manager</p>\n"
+"                <br/>\n"
+"                <p>\n"
+"                    Reject Reason : <t t-out=\"object.reject_reason\">\n"
+"                </t></p>\n"
+"                <br/>\n"
+"                <a t-attf-href=\"{{object.allocation_url()}}\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\" target=\"_blank\">\n"
+"                    View Request\n"
+"                </a>\n"
+"                <br/><br/>\n"
+"            </div>\n"
+"        "
+msgstr ""
+"<div style=\"background-color:#F3F5F6;color:#515166;font-family:Arial,Helvetica,sans-serif;font-size:14px;\">\n"
+"                <p>Hello,</p>\n"
+"                <br/>\n"
+"                <p>An Solicitud de equipo <strong><t t-out=\"object.number\"/></strong> rechazado por el gerente</p>\n"
+"                <br/>\n"
+"                <p>\n"
+"                    Motivo de rechazo : <t t-out=\"object.reject_reason\">\n"
+"                </t></p>\n"
+"                <br/>\n"
+"                <a t-attf-href=\"{{object.allocation_url()}}\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\" target=\"_blank\">\n"
+"                    Ver solicitudes\n"
+"                </a>\n"
+"                <br/><br/>\n"
+"            </div>\n"
+"        "
+
+#. module: dev_equipment_allocation
+#: model:mail.template,body_html:dev_equipment_allocation.template_allocation_request_submitted
+msgid ""
+"<div style=\"background-color:#F3F5F6;color:#515166;font-family:Arial,Helvetica,sans-serif;font-size:14px;\">\n"
+"                <p>Hello,</p>\n"
+"                <br/>\n"
+"                <p>An Equipment Request <strong><t t-out=\"object.number\"/></strong> is waiting for your approval</p>\n"
+"                <br/>\n"
+"                <div><strong>Employee : </strong> <t t-out=\"object.employee_id.name\"/></div>\n"
+"                <div><strong>Equipment : </strong> <t t-out=\"object.equipment_id.name\"/></div>\n"
+"                <br/><br/>\n"
+"                <a t-attf-href=\"{{object.allocation_url()}}\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\" target=\"_blank\">\n"
+"                    View Request\n"
+"                </a>\n"
+"                <br/><br/>\n"
+"            </div>\n"
+"        "
+msgstr ""
+"<div style=\"background-color:#F3F5F6;color:#515166;font-family:Arial,Helvetica,sans-serif;font-size:14px;\">\n"
+"                <p>Hola,</p>\n"
+"                <br/>\n"
+"                <p>Solicitud de quipo <strong><t t-out=\"object.number\"/></strong> en espera por tu aprobación</p>\n"
+"                <br/>\n"
+"                <div><strong>Empleado : </strong> <t t-out=\"object.employee_id.name\"/></div>\n"
+"                <div><strong>Equipo : </strong> <t t-out=\"object.equipment_id.name\"/></div>\n"
+"                <br/><br/>\n"
+"                <a t-attf-href=\"{{object.allocation_url()}}\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\" target=\"_blank\">\n"
+"                    Ver solicitudes\n"
+"                </a>\n"
+"                <br/><br/>\n"
+"            </div>\n"
+"        "
+
+#. module: dev_equipment_allocation
+#: model:mail.template,body_html:dev_equipment_allocation.template_allocation_return_reminder
+msgid ""
+"<div style=\"background-color:#F3F5F6;color:#515166;font-family:Arial,Helvetica,sans-serif;font-size:14px;\">\n"
+"                <p>Hello,</p>\n"
+"                <br/>\n"
+"                <p>You need to return <strong><t t-out=\"object.equipment_id.name\"/></strong> on\n"
+"                <strong><t t-out=\"object.get_return_date()\"/></strong></p>\n"
+"                <br/>\n"
+"                <a t-attf-href=\"{{object.allocation_url()}}\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\" target=\"_blank\">\n"
+"                    View Request\n"
+"                </a>\n"
+"                <br/><br/>\n"
+"            </div>\n"
+"        "
+msgstr ""
+"<div style=\"background-color:#F3F5F6;color:#515166;font-family:Arial,Helvetica,sans-serif;font-size:14px;\">\n"
+"                <p>Hola,</p>\n"
+"                <br/>\n"
+"                <p>Necesitas devolver <strong><t t-out=\"object.equipment_id.name\"/></strong> on\n"
+"                <strong><t t-out=\"object.get_return_date()\"/></strong></p>\n"
+"                <br/>\n"
+"                <a t-attf-href=\"{{object.allocation_url()}}\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\" target=\"_blank\">\n"
+"                    Ver solicitudes\n"
+"                </a>\n"
+"                <br/><br/>\n"
+"            </div>\n"
+"        "
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.form_equipment_allocation_dev_equipment_allocation
+msgid "<span>Replacement</span>"
+msgstr "<span>Reemplazo</span>"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.form_equipment_allocation_dev_equipment_allocation
+msgid "<span>Requested From</span>"
+msgstr "<span>Solicitado de</span>"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__message_needaction
+msgid "Action Needed"
+msgstr "Acción necesaria"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.form_equipment_allocation_dev_equipment_allocation
+msgid "Allocate"
+msgstr "Asignar"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields.selection,name:dev_equipment_allocation.selection__equipment_allocation__state__allocated
+#: model:ir.model.fields.selection,name:dev_equipment_allocation.selection__maintenance_equipment__state__allocated
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.kanban_equipment_dev_equipment_allocation_inherited
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.search_equipment_allocation_dev_equipment_allocation
+msgid "Allocated"
+msgstr "Asignado"
+
+msgid "Allocated"
+msgstr "Asignado"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.form_equipment_dev_equipment_allocation_inherited
+msgid "Allocation"
+msgstr "Asignación"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_maintenance_equipment__allocation_count
+msgid "Allocation Count"
+msgstr "Recuento de asignaciones"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__allocation_date
+msgid "Allocation Date"
+msgstr "Fecha de asignación"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__allocation_type
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.search_equipment_allocation_dev_equipment_allocation
+msgid "Allocation Type"
+msgstr "Tipo de asignación"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__message_attachment_count
+msgid "Attachment Count"
+msgstr "Recuento de archivos adjuntos"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.form_equipment_allocation_dev_equipment_allocation
+msgid "Authorized"
+msgstr "Autorizado"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields.selection,name:dev_equipment_allocation.selection__maintenance_equipment__state__available
+msgid "Available"
+msgstr "Disponible"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_res_company__er_before_days
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_res_config_settings__er_before_days
+msgid "Before Days"
+msgstr "dias antes"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.popup_reject_reason_dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.popup_replace_equipment_dev_equipment_allocation
+msgid "Close Window"
+msgstr "Cerrar ventana"
+
+#. module: dev_equipment_allocation
+#: model:ir.model,name:dev_equipment_allocation.model_res_company
+msgid "Companies"
+msgstr "Empresas"
+
+#. module: dev_equipment_allocation
+#: model:ir.model,name:dev_equipment_allocation.model_res_config_settings
+msgid "Config Settings"
+msgstr "Configuración"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__create_uid
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_reject_reason__create_uid
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_replace_equipment__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__create_date
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_reject_reason__create_date
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_replace_equipment__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.report_template
+msgid "Day:"
+msgstr "Dia:"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields.selection,name:dev_equipment_allocation.selection__equipment_allocation__duration_type__day
+msgid "Days"
+msgstr "Dias"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__description
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.form_equipment_allocation_dev_equipment_allocation
+msgid "Description"
+msgstr "Descripción"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__display_name
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_reject_reason__display_name
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_replace_equipment__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__duration
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.form_equipment_allocation_dev_equipment_allocation
+msgid "Duration"
+msgstr "Duración"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__duration_type
+msgid "Duration Type"
+msgstr "Tipo de duración"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.report_template
+msgid "Duration:"
+msgstr "Duración:"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__employee_id
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.search_equipment_allocation_dev_equipment_allocation
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.report_template
+msgid "Employee:"
+msgstr "Empleado:"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__equipment_id
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_replace_equipment__equipment_id
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.search_equipment_allocation_dev_equipment_allocation
+msgid "Equipment"
+msgstr "Equipo"
+
+#. module: dev_equipment_allocation
+#: model:ir.model,name:dev_equipment_allocation.model_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_reject_reason__equipment_id
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_replace_equipment__allocation_id
+#: model:ir.ui.menu,name:dev_equipment_allocation.main_menu_equipment_allocation_dev_equipment_allocation
+msgid "Equipment Allocation"
+msgstr "Asignación de equipo"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.form_equipment_allocation_dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.tree_equipment_allocation_dev_equipment_allocation
+msgid "Equipment Allocation Form"
+msgstr "Formulario de asignación de equipo"
+
+#. module: dev_equipment_allocation
+#: model:ir.actions.act_window,name:dev_equipment_allocation.action_equipment_allocation_dev_equipment_allocation
+#: model:ir.ui.menu,name:dev_equipment_allocation.sub_menu_equipment_allocation_dev_equipment_allocation
+msgid "Equipment Allocation Request"
+msgstr "Solicitud de asignacion de equipo"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.search_equipment_allocation_dev_equipment_allocation
+msgid "Equipment Allocation Search"
+msgstr "Busqueda de asignación de equipos"
+
+#. module: dev_equipment_allocation
+#: model:ir.actions.act_window,name:dev_equipment_allocation.action_equipment_replacement_dev_equipment_allocation
+#: model:ir.ui.menu,name:dev_equipment_allocation.sub_menu_equipment_replacement_dev_equipment_allocation
+msgid "Equipment Replacement Request"
+msgstr "Solicitud de reemplazo de equipo"
+
+#. module: dev_equipment_allocation
+#. odoo-python
+#: code:addons/dev_equipment_allocation/models/equipment_allocation.py:0
+msgid ""
+"Equipment Replacement Request is automatically created when you replace "
+"Allocated Equipment, Do not create it manually."
+msgstr ""
+"La solicitud de reemplazo de equipo se crea automáticamente cuando reemplaza "
+"Equipo asignado, no lo cree manualmente."
+
+#. module: dev_equipment_allocation
+#: model:mail.template,name:dev_equipment_allocation.template_allocation_request_allocated
+msgid "Equipment Request is allocated"
+msgstr "La solicitud de equipo esta asignada"
+
+#. module: dev_equipment_allocation
+#: model:mail.template,name:dev_equipment_allocation.template_allocation_request_rejected
+msgid "Equipment Request is rejected"
+msgstr "La solicitud de equipo esta rechazada"
+
+#. module: dev_equipment_allocation
+#: model:mail.template,name:dev_equipment_allocation.template_allocation_request_submitted
+msgid "Equipment Request submitted"
+msgstr "La solicitud de equipo esta enviada"
+
+#. module: dev_equipment_allocation
+#: model:ir.actions.server,name:dev_equipment_allocation.cron_equipment_return_reminder_ir_actions_server
+#: model:mail.template,name:dev_equipment_allocation.template_allocation_return_reminder
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.form_res_config_dev_equipment_allocation
+msgid "Equipment Return Reminder"
+msgstr "Recordatorio de devolución de equipo"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.report_template
+msgid "Equipment:"
+msgstr "Equipo:"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__return_date
+msgid "Expected Return Date"
+msgstr "Fecha prevista de devolución"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Partners)"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.search_equipment_allocation_dev_equipment_allocation
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__has_message
+msgid "Has Message"
+msgstr "Tiene mensaje"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__has_replacement
+msgid "Has Replacement"
+msgstr "Tiene reemplazo"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__id
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_reject_reason__id
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_replace_equipment__id
+msgid "ID"
+msgstr "ID"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,help:dev_equipment_allocation.field_equipment_allocation__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si esta marcado, los mensajes nuevos requieren su atención."
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,help:dev_equipment_allocation.field_equipment_allocation__message_has_error
+#: model:ir.model.fields,help:dev_equipment_allocation.field_equipment_allocation__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si esta marcado, algunos mensajes tienen un error de entrega."
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__message_is_follower
+msgid "Is Follower"
+msgstr "Es seguidor"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__is_replace_request
+msgid "Is Replace?"
+msgstr "¿Es reemplazo?"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__write_uid
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_reject_reason__write_uid
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_replace_equipment__write_uid
+msgid "Last Updated by"
+msgstr "Actualizado por ultima vez por"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__write_date
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_reject_reason__write_date
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_replace_equipment__write_date
+msgid "Last Updated on"
+msgstr "Ultima actualización el"
+
+#. module: dev_equipment_allocation
+#: model:ir.model,name:dev_equipment_allocation.model_maintenance_equipment
+msgid "Maintenance Equipment"
+msgstr "Equipo de mantenimiento"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de mensaje de entrega"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: dev_equipment_allocation
+#. odoo-python
+#: code:addons/dev_equipment_allocation/__init__.py:0
+msgid "Module does not support Odoo version 18.0"
+msgstr "El módulo no es compatible con Odoo version 18.0"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields.selection,name:dev_equipment_allocation.selection__equipment_allocation__duration_type__month
+msgid "Months"
+msgstr "Meses"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields.selection,name:dev_equipment_allocation.selection__equipment_allocation__state__draft
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.search_equipment_allocation_dev_equipment_allocation
+msgid "New"
+msgstr "Nuevo"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__number
+msgid "Number"
+msgstr "Número"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__message_has_error_counter
+msgid "Number of errors"
+msgstr "número de errores"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,help:dev_equipment_allocation.field_equipment_allocation__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren acción"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,help:dev_equipment_allocation.field_equipment_allocation__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields.selection,name:dev_equipment_allocation.selection__equipment_allocation__allocation_type__on_demand
+msgid "On Demand"
+msgstr "Bajo demanda"
+
+#. module: dev_equipment_allocation
+#. odoo-python
+#: code:addons/dev_equipment_allocation/models/equipment_allocation.py:0
+msgid "Only 'New' request can be deleted"
+msgstr "Solo 'Nuevas' solicitudes pueden ser eliminadas"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__over_due_days
+msgid "Overdue Days"
+msgstr "Días vencidos"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields.selection,name:dev_equipment_allocation.selection__equipment_allocation__allocation_type__permanent
+msgid "Permanent"
+msgstr "Permanente"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.form_equipment_allocation_dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.popup_reject_reason_dev_equipment_allocation
+msgid "Reject"
+msgstr "Rechazar"
+
+#. module: dev_equipment_allocation
+#: model:ir.actions.act_window,name:dev_equipment_allocation.action_popup_reject_reason_dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__reject_reason
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_reject_reason__reject_reason
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.form_equipment_allocation_dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.popup_reject_reason_dev_equipment_allocation
+msgid "Reject Reason"
+msgstr "Motivo de rechazo"
+
+#. module: dev_equipment_allocation
+#: model:ir.model,name:dev_equipment_allocation.model_reject_reason
+msgid "Reject Reason of Equipment Allocation Request"
+msgstr "Rechazar el motivo de la solicitud de asignación de equipos"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields.selection,name:dev_equipment_allocation.selection__equipment_allocation__state__rejected
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.search_equipment_allocation_dev_equipment_allocation
+msgid "Rejected"
+msgstr "Rechazado"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.form_equipment_allocation_dev_equipment_allocation
+msgid "Replace"
+msgstr "Reemplazo"
+
+#. module: dev_equipment_allocation
+#: model:ir.actions.act_window,name:dev_equipment_allocation.action_replace_equipment_dev_equipment_allocation
+#: model:ir.model,name:dev_equipment_allocation.model_replace_equipment
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.popup_replace_equipment_dev_equipment_allocation
+msgid "Replace Equipment"
+msgstr ""
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__replaced_allocation_id
+msgid "Replaced Allocation"
+msgstr "Asignación reemplazada"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.form_equipment_allocation_dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.report_template
+msgid "Report"
+msgstr "Reporte"
+
+#. module: dev_equipment_allocation
+#: model:ir.actions.report,name:dev_equipment_allocation.report_template_id
+msgid "Report equipment allocation"
+msgstr "Reporte de asignación de equipo"
+
+#. module: dev_equipment_allocation
+#. odoo-python
+#: code:addons/dev_equipment_allocation/models/equipment_allocation.py:0
+msgid ""
+"Request %s is already pending for %s equipment which is requested by %s, you"
+" can not make new request"
+msgstr ""
+"La solicitud %s ya está pendiente para %s equipo solicitado por %s, usted"
+"No se puede hacer una nueva solicitud"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__request_date
+msgid "Request Date"
+msgstr "Fecha de solicitud"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.popup_replace_equipment_dev_equipment_allocation
+msgid "Request Replacement"
+msgstr "Solicitud de reemplazo"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.form_equipment_allocation_dev_equipment_allocation
+msgid "Requesting for printer"
+msgstr "Solicitar impresora"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.form_equipment_allocation_dev_equipment_allocation
+msgid "Return"
+msgstr "Devolver"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__actual_return_date
+msgid "Return Date"
+msgstr "Fecha de devolución"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields.selection,name:dev_equipment_allocation.selection__equipment_allocation__state__returned
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.search_equipment_allocation_dev_equipment_allocation
+msgid "Returned"
+msgstr "Devuelto"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de entrega de SMS"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.form_equipment_allocation_dev_equipment_allocation
+msgid "Set to New"
+msgstr "Establecer como nuevo"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.report_template
+msgid "Signature"
+msgstr "Firma"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__state
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_maintenance_equipment__state
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.search_equipment_allocation_dev_equipment_allocation
+msgid "Status"
+msgstr "Estado"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.report_template
+msgid "Type:"
+msgstr "Tipo:"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.search_equipment_allocation_dev_equipment_allocation
+msgid "Waiting for Approval"
+msgstr "Esperando por aprovación"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,field_description:dev_equipment_allocation.field_equipment_allocation__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields,help:dev_equipment_allocation.field_equipment_allocation__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields.selection,name:dev_equipment_allocation.selection__equipment_allocation__duration_type__week
+msgid "Weeks"
+msgstr "Semanas"
+
+#. module: dev_equipment_allocation
+#: model:ir.model.fields.selection,name:dev_equipment_allocation.selection__equipment_allocation__duration_type__year
+msgid "Years"
+msgstr "Años"
+
+#. module: dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.popup_reject_reason_dev_equipment_allocation
+#: model_terms:ir.ui.view,arch_db:dev_equipment_allocation.popup_replace_equipment_dev_equipment_allocation
+msgid "or"
+msgstr "o"

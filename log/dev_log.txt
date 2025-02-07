@@ -1,0 +1,15 @@
+13 nov 2024 - DTH
+---------------------------
+v 18.0.1.0
+
+    * Module Migrate.
+    
+        - solve tree view issue.
+        - solve chatter issue.
+        - add allocated button in equipment.
+        
+25 nov 2024 - KBO
+---------------------------
+v 18.0.1.1
+    *index updated.
+    

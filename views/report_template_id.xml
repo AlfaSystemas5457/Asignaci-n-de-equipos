@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- Registro del Reporte -->
+    <record id="report_template_id" model="ir.actions.report">
+        <field name="name">Report Equipment Allocation</field>
+        <field name="model">equipment.allocation</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">dev_equipment_allocation.report_template</field>
+        <field name="report_file">dev_equipment_allocation.report_template</field>
+        <field name="paperformat_id" ref="dev_equipment_allocation.paperformat_no_margins" />
+        <field name="print_report_name">'Report ' + 'equipment ' + (object.name or 'Without name')</field>
+        <field name="binding_model_id" ref="dev_equipment_allocation.model_equipment_allocation" />
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Plantilla del Reporte -->
+    <template id="report_template"
+        inherit_id="dev_equipment_allocation.dev_equipment_report_external_layout_template_equipment">
+        <xpath expr="//span[@name='title']" position="replace">
+            <h4>
+                <t t-if="docs and docs._name == 'account.move'">
+                    Factura
+                </t>
+                <t
+                    t-elif="docs and docs._name == 'equipment.allocation'">
+                    Reporte de Asignación de Equipos
+                </t>
+                <t t-else="">
+                    Título
+                </t>
+            </h4>
+        </xpath>
+
+        <xpath expr="//div[@name='page']" position="replace">
+            <t t-if="docs and docs._name == 'equipment.allocation'">
+                <div class="container">
+                    <div class="text-center my-4">
+                        <h3 class="text-muted"> Estado: <t
+                                t-out="dict(request.env['equipment.allocation']._fields['state'].selection).get(docs.state)" />
+                        </h3>
+                    </div>
+
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th class="text-start">Empleado</th>
+                                <td class="text-end">
+                                    <t t-esc="docs.employee_id.display_name" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-start">Equipo</th>
+                                <td class="text-end">
+                                    <t t-esc="docs.equipment_id.display_name" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-start">Área</th>
+                                <td class="text-end">
+                                    <t
+                                        t-out="dict(request.env['equipment.allocation']._fields['area'].selection).get(docs.area)" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-start">Tipo de Documento</th>
+                                <td class="text-end">
+                                    <t
+                                        t-out="dict(request.env['equipment.allocation']._fields['doc_type'].selection).get(docs.doc_type)" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-start">Tipo de Asignación</th>
+                                <td class="text-end">
+                                    <t
+                                        t-out="dict(request.env['equipment.allocation']._fields['allocation_type'].selection).get(docs.allocation_type)" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <t t-if="docs.allocation_type == 'on_demand'">
+                        <h4 class="mt-4 fw-bold">Detalles de la Asignación</h4>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th class="text-start">Duración</th>
+                                    <td class="text-end">
+                                        <t t-esc="docs.duration" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th class="text-start">Tipo de Duración</th>
+                                    <td class="text-end">
+                                        <t
+                                            t-out="dict(request.env['equipment.allocation']._fields['duration_type'].selection).get(docs.duration_type)" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
+                    <div class="text-muted border border-dark rounded"
+                        style="width:100%; height: 130px;">
+                        <span>
+                            Firma
+                        </span>
+                    </div>
+                </div>
+            </t>
+            <t t-else="">
+                <t t-call="web.address_layout" />
+                <h2 t-out="layout_document_title" />
+                <t t-out="0" />
+            </t>
+        </xpath>
+    </template>
+</odoo>

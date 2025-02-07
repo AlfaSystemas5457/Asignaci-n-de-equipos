@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+    <record id="cron_equipment_return_reminder" model="ir.cron">
+        <field name="name">Equipment Return Reminder</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="model_id" ref="dev_equipment_allocation.model_equipment_allocation"/>
+        <field name="code">model.equipment_allocation_reminder()</field>
+        <field name="state">code</field>
+    </record>
+</odoo>

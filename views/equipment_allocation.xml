@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+    <!--form-->
+    <record id="form_equipment_allocation_dev_equipment_allocation" model="ir.ui.view">
+        <field name="name">form_equipment_allocation_dev_equipment_allocation_name</field>
+        <field name="model">equipment.allocation</field>
+        <field name="arch" type="xml">
+            <form string="Equipment Allocation Form">
+                <header>
+                    <!-- attrs="{'invisible': [('state', '!=', 'draft')]}"-->
+                    <button name="allocate_equipment" type="object" string="Authorized" class="oe_highlight" invisible="state != 'draft'" />
+                    <!-- attrs="{'invisible': [('state', '!=', 'submitted')]}"-->
+                    <button name="allocate_equipment" type="object" string="Allocate" class="oe_highlight" groups="maintenance.group_equipment_manager" invisible="state != 'submitted'" />
+                    <!-- attrs="{'invisible': [('state', '!=', 'allocated')]}"-->
+                    <button name="return_equipment" type="object" string="Return" class="oe_highlight" groups="maintenance.group_equipment_manager" invisible="state != 'allocated'" />
+                    <!-- attrs="{'invisible': ['|', ('state', '!=', 'allocated'),
+                    ('allocation_type', '!=', 'permanent')]}"-->
+                    <button name="replace_equipment" type="object" string="Replace" class="oe_highlight" invisible="state != 'allocated' or allocation_type != 'permanent'" />
+                    <!-- attrs="{'invisible': [('state', '!=', 'submitted')]}"-->
+                    <button name="reject_request" type="object" string="Reject" groups="maintenance.group_equipment_manager" invisible="state != 'submitted'" />
+                    <!-- attrs="{'invisible': [('state', '!=', 'rejected')]}"-->
+                    <button name="set_to_draft" type="object" string="Set to New" groups="maintenance.group_equipment_manager" invisible="state != 'rejected'" />
+                    <button name="create_report" type="object" string="Report" class="btn-light" />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <!-- attrs="{'invisible': [('has_replacement', '=', False)]}"-->
+                        <button type="object" name="view_replaced_allocation" class="oe_stat_button" icon="fa-retweet" invisible="has_replacement == False">
+                            <span>Replacement</span>
+                        </button>
+                        <!-- attrs="{'invisible': [('replaced_allocation_id', '=', False)]}"-->
+                        <button type="object" name="view_allocation_request" class="oe_stat_button" icon="fa-external-link" invisible="replaced_allocation_id == False">
+                            <span>Requested From</span>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <div class="o_row">
+                            <field name="number" readonly="1" />
+                        </div>
+                        <h1 class="o_row">
+                            <!-- attrs="{'readonly': [('state', 'not in', ['draft',
+                            'submitted'])]}"-->
+                            <field name="name" placeholder="Requesting for printer" readonly="state not in ['draft','submitted']" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <!-- attrs="{'readonly': [('state', 'not in', ['draft',
+                            'submitted'])]}"-->
+                            <field name="employee_id" readonly="state not in ['draft','submitted']" />
+                            <!-- attrs="{'readonly': [('state', 'not in', ['draft',
+                            'submitted'])]}"-->
+                            <field name="equipment_id" readonly="state not in ['draft','submitted']" />
+                            <!-- attrs="{'readonly': [('state', 'not in', ['draft',
+                            'submitted'])]}"-->
+                            <field name="allocation_type" readonly="state not in ['draft','submitted']" widget='radio' options="{'horizontal': true}" />
+                            <field name="replaced_allocation_id" invisible="1" />
+                            <field name="has_replacement" invisible="1" />
+                        </group>
+                        <group>
+                            <field name="request_date" readonly="1" force_save="1" />
+                            <!-- attrs="{'invisible': [('allocation_type', '!=', 'on_demand')]}"-->
+                            <label for="duration" string="Duration" invisible="allocation_type != 'on_demand'" />
+                            <!-- attrs="{'invisible': [('allocation_type', '!=', 'on_demand')]}"-->
+                            <div invisible="allocation_type != 'on_demand'">
+                                <!-- attrs="{'readonly': [('state', 'not in', ['draft',
+                                'submitted'])], 'required': [('allocation_type', '=',
+                                'on_demand')]}"-->
+                                <field name="duration" class="oe_inline" readonly="state not in ['draft','submitted']" required="allocation_type == 'on_demand' " />
+                                <!--attrs="{'readonly':
+                                [('state', 'not in', ['draft', 'submitted'])], 'required':
+                                [('allocation_type', '=', 'on_demand')]}"-->
+                                <field name="duration_type" required="allocation_type == 'on_demand'" class="oe_inline" readonly="state not in ['draft','submitted']" />
+                            </div>
+                            <!-- attrs="{'readonly': ['|', ('state', 'not in', ['draft',
+                            'submitted'])], 'invisible': [('allocation_date', '=', False)]}"-->
+                            <field name="allocation_date" readonly="state not in ['draft','submitted']" invisible="allocation_date == False" force_save="1" />
+                            <!-- attrs="{'readonly': [('state', 'not in', ['draft', 'submitted'])],
+                            'invisible': ['|', ('allocation_type', '!=', 'on_demand'),
+                            ('return_date', '=', False)]}"-->
+                            <field name="return_date" readonly="state not in ['draft','submitted']" invisible="allocation_type != 'on_demand' or return_date == False" force_save="1" />
+                            <!-- attrs="{'invisible': [('over_due_days','&#60;=', 0)]}"-->
+                            <field name="over_due_days" invisible="over_due_days &#60;= 0" />
+                            <!-- attrs="{'invisible': [('actual_return_date','=', False)]}" readonly="1"-->
+                            <field name="actual_return_date" invisible="actual_return_date == False" readonly="1" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <!-- attrs="{'readonly': [('state', 'not in', ['draft',
+                            'submitted'])]}"-->
+                            <field name="description" readonly="state not in ['draft','submitted']" />
+                        </page>
+                        <!-- attrs="{'invisible': [('reject_reason', '=', False)]}"-->
+                        <page string="Reject Reason" invisible="reject_reason == False">
+                            <field name="reject_reason" readonly="1" force_save="1" />
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+                <!--     <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div> -->
+            </form>
+        </field>
+    </record>
+
+    <!--tree-->
+    <record id="tree_equipment_allocation_dev_equipment_allocation" model="ir.ui.view">
+        <field name="name">tree_equipment_allocation_dev_equipment_allocation_name</field>
+        <field name="model">equipment.allocation</field>
+        <field name="arch" type="xml">
+            <list string="Equipment Allocation Form">
+                <field name="number" />
+                <field name="name" />
+                <field name="employee_id" />
+                <field name="equipment_id" />
+                <field name="request_date" />
+                <field name="return_date" />
+                <field name="state" />
+            </list>
+        </field>
+    </record>
+
+    <!--search-->
+    <record id="search_equipment_allocation_dev_equipment_allocation" model="ir.ui.view">
+        <field name="name">Equipment Allocation - Search</field>
+        <field name="model">equipment.allocation</field>
+        <field name="arch" type="xml">
+            <search string="Equipment Allocation Search">
+                <field name="name" />
+                <field name="number" />
+                <filter name='state_draft' string="New" domain="[('state','=','draft')]" />
+                <filter name='state_submitted' string="Waiting for Approval" domain="[('state','=','submitted')]" />
+                <filter name='state_allocated' string="Allocated" domain="[('state','=','allocated')]" />
+                <filter name='state_rejected' string="Rejected" domain="[('state','=','rejected')]" />
+                <filter name='state_returned' string="Returned" domain="[('state','=','returned')]" />
+                <group expand="0" string="Group By" colspan="16">
+                    <filter name="employee_id" string="Employee" context="{'group_by':'employee_id'}" />
+                    <filter name="equipment_id" string="Equipment" context="{'group_by':'equipment_id'}" />
+                    <filter name="allocation_type" string="Allocation Type" context="{'group_by':'allocation_type'}" />
+                    <filter name="state" string="Status" context="{'group_by':'state'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!--Action-->
+    <record id="action_equipment_allocation_dev_equipment_allocation" model="ir.actions.act_window">
+        <field name="name">Equipment Allocation Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">equipment.allocation</field>
+        <field name="domain">[('is_replace_request', '=', False)]</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!--Menus-->
+    <menuitem name="Equipment Allocation" id="main_menu_equipment_allocation_dev_equipment_allocation" parent="maintenance.menu_maintenance_title" sequence="2" />
+    <menuitem name="Equipment Allocation Request" id="sub_menu_equipment_allocation_dev_equipment_allocation" parent="main_menu_equipment_allocation_dev_equipment_allocation" action="action_equipment_allocation_dev_equipment_allocation" sequence="1" />
+</odoo>

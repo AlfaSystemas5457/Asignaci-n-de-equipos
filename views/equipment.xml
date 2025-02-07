@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+    <record id="kanban_equipment_dev_equipment_allocation_inherited" model="ir.ui.view">
+        <field name="name">kanban_equipment_dev_equipment_allocation_inherited_name</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="state"/>
+            </xpath>
+            <xpath expr="//div[@class='badge text-bg-danger']"
+                   position="after">
+                <div class="badge text-bg-success" t-if="record.state.raw_value=='allocated'">
+                   Allocated
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="form_equipment_dev_equipment_allocation_inherited" model="ir.ui.view">
+        <field name="name">form_equipment_dev_equipment_allocation_inherited_name</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+<!--                 attrs="{'invisible':[('allocation_count', '=', 0)]}"-->
+                <button type="object" name="view_allocation" class="oe_stat_button" icon="fa-external-link" invisible="allocation_count == 0">
+                    <field string="Allocation" name="allocation_count" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

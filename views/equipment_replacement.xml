@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+    <!--Action-->
+    <record id="action_equipment_replacement_dev_equipment_allocation" model="ir.actions.act_window">
+        <field name="name">Equipment Replacement Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">equipment.allocation</field>
+        <field name="domain">[('is_replace_request', '=', True)]</field>
+        <field name="context">{'replacement': 'yes'}</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!--Menus-->
+    <menuitem name="Equipment Replacement Request"
+              id="sub_menu_equipment_replacement_dev_equipment_allocation"
+              parent="main_menu_equipment_allocation_dev_equipment_allocation"
+              action="action_equipment_replacement_dev_equipment_allocation"
+              sequence="2"/>
+</odoo>
