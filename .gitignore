@@ -30,7 +30,6 @@ dist/
 *.db
 
 # Carpetas generadas por Odoo
-*.pot
 *.po~
 *.mo
 *.zip
