@@ -23,19 +23,19 @@
                     Reporte de Asignación de Equipos
                 </t>
                 <t
-                    t-if="docs and docs._name == 'sale.order'">
+                    t-elif="docs and docs._name == 'sale.order'">
                     Venta
                 </t>
                 <t
-                    t-if="docs and docs._name == 'purchase.order'">
+                    t-elif="docs and docs._name == 'purchase.order'">
                     Compra
                 </t>
                 <t
-                    t-if="docs and docs._name == 'stock.picking'">
+                    t-elif="docs and docs._name == 'stock.picking'">
                     Inventario
                 </t>
                 <t
-                    t-if="docs and docs._name == 'account.move'">
+                    t-elif="docs and docs._name == 'account.move'">
                     Factura
                 </t>
                 <t t-else="">
