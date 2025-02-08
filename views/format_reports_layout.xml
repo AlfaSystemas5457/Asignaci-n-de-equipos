@@ -4,6 +4,10 @@
         <t t-call="web.basic_layout">
             <t t-call="web.html_container">
                 <style>
+                    @page {
+                    margin: 0mm !important;
+                    size: A4;
+                    }
                     html,
                     body {
                     height: 100% !important;
@@ -14,7 +18,10 @@
 
                 <div class="p-2">
                     <!-- Encabezado -->
-                    <div name="header" class="mb-2">
+                    <div class="oe_structure"></div>
+                    <div name="header"
+                        class="header mt-2 mx-2 position-absolute fixed-top"
+                        style="z-index: 0 !important;">
                         <table
                             style="width: 100%; border: 1px solid; height: 130px; border-collapse: collapse;">
                             <tr>
@@ -76,8 +83,9 @@
                                         <tr>
                                             <td
                                                 style="padding: 5px; border-collapse: collapse;">
-                                                <strong>Página:</strong>
-                                                <span>1</span>
+                                                <strong> Página: <span class="page" /> / <span
+                                                        class="topage" />
+                                                </strong>
                                             </td>
                                         </tr>
                                         <tr>
@@ -92,12 +100,13 @@
                                                 style="padding: 5px; border-collapse: collapse; border-top: 1px solid;">
                                                 <strong>Folio:</strong>
                                                 <span>
-                                                    <t t-if="docs and docs._name == 'account.move'">
-                                                        <t t-esc="docs.name" />
+                                                    <t
+                                                        t-if="docs and docs._name == 'equipment.allocation'">
+                                                        <t t-esc="docs.number" />
                                                     </t>
                                                     <t
-                                                        t-elif="docs and docs._name == 'equipment.allocation'">
-                                                        <t t-esc="docs.number" />
+                                                        t-elif="docs and docs.name">
+                                                        <t t-esc="docs.name" />
                                                     </t>
                                                     <t t-else="">
                                                     </t>
@@ -128,14 +137,17 @@
                     </div>
 
                     <!-- Contenido -->
-                    <div name="page" style="flex-grow: 1; min-height: calc(100vh - 300px);">
+                    <div class="oe_structure"></div>
+                    <div name="page"
+                        style="flex-grow: 1; min-height: calc(100vh - 300px);">
                         <t t-call="web.address_layout" />
                         <h2 t-out="layout_document_title" />
                         <t t-out="0" />
                     </div>
 
                     <!-- Pie de página -->
-                    <div name="footer" class="position-absolute fixed-bottom mb-2"
+                    <div class="oe_structure"></div>
+                    <div name="footer" class="position-absolute fixed-bottom mb-2 mx-2"
                         style="text-align: center; border-bottom: 1px solid;">
                         <t t-if="docs">
                             <t t-esc="docs.env.company.report_footer" />
