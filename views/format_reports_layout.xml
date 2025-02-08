@@ -122,6 +122,21 @@
                                                     <t
                                                         t-esc="docs.request_date.strftime('%d/%m/%Y')" />
                                                 </t>
+                                                <t
+                                                    t-if="docs and docs._name == 'sale.order'">
+                                                    <t
+                                                        t-esc="docs.create_date.strftime('%d/%m/%Y')" />
+                                                </t>
+                                                <t
+                                                    t-if="docs and docs._name == 'purchase.order'">
+                                                    <t
+                                                        t-esc="docs.date_approve.strftime('%d/%m/%Y')" />
+                                                </t>
+                                                <t
+                                                    t-if="docs and docs._name == 'stock.picking'">
+                                                    <t
+                                                        t-esc="docs.scheduled_date.strftime('%d/%m/%Y')" />
+                                                </t>
                                                 <t t-elif="docs and docs.date">
                                                     <t
                                                         t-esc="docs.date.strftime('%d/%m/%Y')" />

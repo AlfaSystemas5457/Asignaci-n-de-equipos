@@ -18,12 +18,25 @@
         inherit_id="dev_equipment_allocation.dev_equipment_report_external_layout_template_equipment">
         <xpath expr="//span[@name='title']" position="replace">
             <h4>
-                <t t-if="docs and docs._name == 'account.move'">
-                    Factura
+                <t
+                    t-if="docs and docs._name == 'equipment.allocation'">
+                    Reporte de Asignación de Equipos
                 </t>
                 <t
-                    t-elif="docs and docs._name == 'equipment.allocation'">
-                    Reporte de Asignación de Equipos
+                    t-if="docs and docs._name == 'sale.order'">
+                    Venta
+                </t>
+                <t
+                    t-if="docs and docs._name == 'purchase.order'">
+                    Compra
+                </t>
+                <t
+                    t-if="docs and docs._name == 'stock.picking'">
+                    Inventario
+                </t>
+                <t
+                    t-if="docs and docs._name == 'account.move'">
+                    Factura
                 </t>
                 <t t-else="">
                     Título
