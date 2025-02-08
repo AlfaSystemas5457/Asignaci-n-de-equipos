@@ -33,88 +33,84 @@
 
         <xpath expr="//div[@name='page']" position="replace">
             <t t-if="docs and docs._name == 'equipment.allocation'">
-                <div class="oe_structure">
-                    <div class="container p-2 position-absolute" style="margin-top: 130px;">
-                        <div class="text-center my-4">
-                            <h3 class="text-muted"> Estado: <t
-                                    t-out="dict(request.env['equipment.allocation']._fields['state'].selection).get(docs.state)" />
-                            </h3>
-                        </div>
+                <div class="container p-2 position-absolute" style="margin-top: 130px;">
+                    <div class="text-center my-4">
+                        <h3 class="text-muted"> Estado: <t
+                                t-out="dict(request.env['equipment.allocation']._fields['state'].selection).get(docs.state)" />
+                        </h3>
+                    </div>
 
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th class="text-start">Empleado</th>
+                                <td class="text-end">
+                                    <t t-esc="docs.employee_id.display_name" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-start">Equipo</th>
+                                <td class="text-end">
+                                    <t t-esc="docs.equipment_id.display_name" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-start">Área</th>
+                                <td class="text-end">
+                                    <t
+                                        t-out="dict(request.env['equipment.allocation']._fields['area'].selection).get(docs.area)" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-start">Tipo de Documento</th>
+                                <td class="text-end">
+                                    <t
+                                        t-out="dict(request.env['equipment.allocation']._fields['doc_type'].selection).get(docs.doc_type)" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="text-start">Tipo de Asignación</th>
+                                <td class="text-end">
+                                    <t
+                                        t-out="dict(request.env['equipment.allocation']._fields['allocation_type'].selection).get(docs.allocation_type)" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <t t-if="docs.allocation_type == 'on_demand'">
+                        <h4 class="mt-4 fw-bold">Detalles de la Asignación</h4>
                         <table class="table table-bordered">
                             <tbody>
                                 <tr>
-                                    <th class="text-start">Empleado</th>
+                                    <th class="text-start">Duración</th>
                                     <td class="text-end">
-                                        <t t-esc="docs.employee_id.display_name" />
+                                        <t t-esc="docs.duration" />
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th class="text-start">Equipo</th>
-                                    <td class="text-end">
-                                        <t t-esc="docs.equipment_id.display_name" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th class="text-start">Área</th>
+                                    <th class="text-start">Tipo de Duración</th>
                                     <td class="text-end">
                                         <t
-                                            t-out="dict(request.env['equipment.allocation']._fields['area'].selection).get(docs.area)" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th class="text-start">Tipo de Documento</th>
-                                    <td class="text-end">
-                                        <t
-                                            t-out="dict(request.env['equipment.allocation']._fields['doc_type'].selection).get(docs.doc_type)" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th class="text-start">Tipo de Asignación</th>
-                                    <td class="text-end">
-                                        <t
-                                            t-out="dict(request.env['equipment.allocation']._fields['allocation_type'].selection).get(docs.allocation_type)" />
+                                            t-out="dict(request.env['equipment.allocation']._fields['duration_type'].selection).get(docs.duration_type)" />
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-
-                        <t t-if="docs.allocation_type == 'on_demand'">
-                            <h4 class="mt-4 fw-bold">Detalles de la Asignación</h4>
-                            <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <th class="text-start">Duración</th>
-                                        <td class="text-end">
-                                            <t t-esc="docs.duration" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-start">Tipo de Duración</th>
-                                        <td class="text-end">
-                                            <t
-                                                t-out="dict(request.env['equipment.allocation']._fields['duration_type'].selection).get(docs.duration_type)" />
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </t>
-                        <div class="text-muted border border-dark rounded"
-                            style="width:100%; height: 130px;">
-                            <span>
-                                Firma
-                            </span>
-                        </div>
+                    </t>
+                    <div class="text-muted border border-dark rounded p-2"
+                        style="width:100%; height: 130px;">
+                        <span>
+                            Firma
+                        </span>
                     </div>
                 </div>
             </t>
             <t t-else="">
-                <div class="oe_structure">
-                    <div class="container p-2 position-absolute" style="margin-top: 130px;">
-                        <t t-call="web.address_layout" />
-                        <h2 t-out="layout_document_title" />
-                        <t t-out="0" />
-                    </div>
+                <div class="container p-2 position-absolute" style="margin-top: 130px;">
+                    <t t-call="web.address_layout" />
+                    <h2 t-out="layout_document_title" />
+                    <t t-out="0" />
                 </div>
             </t>
         </xpath>
