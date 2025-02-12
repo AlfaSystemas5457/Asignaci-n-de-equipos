@@ -57,7 +57,6 @@ class Equipment(models.Model):
     def _compute_allocation_count(self):
         for rec in self:
             allocation_ids = self.env['equipment.allocation'].search([('equipment_id', '=', rec.id)])
-            print("allocation_ids==============",allocation_ids)
             rec.allocation_count = len(allocation_ids)
 
     def view_allocation(self):

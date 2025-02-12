@@ -4,7 +4,7 @@
     'version': '18.0.1.5',
     'sequence': 1,
     'author': 'DGV',
-    'website': 'https://github.com/alfaSystemas5457/',
+    'website': 'https://github.com/AlfaSystemas5457/dev_equipment_allocation',
     'category': 'Human Resources',
     'description':"""""",
     'summary': '',
