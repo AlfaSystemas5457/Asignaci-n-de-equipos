@@ -6,8 +6,9 @@
     'author': 'DGV',
     'website': 'https://github.com/AlfaSystemas5457/dev_equipment_allocation',
     'category': 'Human Resources',
-    'description':"""""",
-    'summary': '',
+    'description':"""Modulo de asignación de equipos""",
+    'summary': 'Modulo de asignación de equipos',
+    'license': 'LGPL-3',
     'depends': ['maintenance', 'mail', 'hr'],
     'data': [
         'security/ir.model.access.csv',

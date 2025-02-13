@@ -139,7 +139,7 @@ class EquipmentAllocation(models.Model):
     def restrict_allocation(self):
         raise ValidationError(_('''Equipment Replacement Request is automatically created when you replace Allocated Equipment, Do not create it manually.'''))
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         record = super(EquipmentAllocation, self).create(vals)
         
